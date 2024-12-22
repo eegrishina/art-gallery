@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Raleway", Arial, sans-serif;
+    background-color: #efefef;
+    color: #0b0b0b;
+    overflow-x: hidden;
+    margin: 30px 60px;
+}
+
+h1, h2, h3, h4 {
+    font-family: "Lora", serif;
+}
