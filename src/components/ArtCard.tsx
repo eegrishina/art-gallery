@@ -1,14 +1,29 @@
-import { useState } from "react";
+import { useAppDispatch } from "../store/store";
+import { toggleLike, deleteArt } from "../store/reducers/ArtsSlice";
 import { Art } from "../store/reducers/ArtsSlice";
 import styles from "./ArtCard.module.css";
 import HeartIcon from "./HeartIcon";
 import TrashIcon from "./TrashIcon";
+import { useState } from "react";
 
-export default function ArtCard({ title, artist, description, imageUrl }: Art) {
-    const [isLiked, setIsLiked] = useState(false);
+export default function ArtCard({ id, title, artist, description, imageUrl, isLiked }: Art) {
+    const [isDeleted, setIsDeleted] = useState(false);
+    
+    const dispatch = useAppDispatch();
+
+    const handleLike = (id: number) => {
+        dispatch(toggleLike(id));
+    }
+
+    const handleDelete = (id: number) => {
+        setIsDeleted(true);
+        setTimeout(() => {
+            dispatch(deleteArt(id));
+        }, 300);
+    }
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${isDeleted ? styles.deleted : ''}`}>
             <div className={styles.content}>
                 <div className={styles.image}>
                     <img src={imageUrl} alt={title} id={styles.img} />
@@ -21,11 +36,12 @@ export default function ArtCard({ title, artist, description, imageUrl }: Art) {
             </div>
 
             <div className={styles.btns}>
-                <button onClick={() => setIsLiked(!isLiked)}
+                <button onClick={() => handleLike(id)}
                     className={isLiked ? styles.liked : styles.like}>
                     <HeartIcon />
                 </button>
-                <button className={styles.delete}>
+                <button onClick={() => handleDelete(id)}
+                    className={styles.delete}>
                     <TrashIcon />
                 </button>
             </div>

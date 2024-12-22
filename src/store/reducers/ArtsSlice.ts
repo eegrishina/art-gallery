@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Art {
     id: number
@@ -6,6 +6,7 @@ export interface Art {
     artist: string;
     description: string;
     imageUrl: string;
+    isLiked: boolean;
 }
 
 interface ArtsState {
@@ -83,7 +84,17 @@ export const fetchArts = createAsyncThunk<Art[], void, { state: { arts: ArtsStat
 const ArtsSlice = createSlice({
     name: "arts",
     initialState,
-    reducers: {},
+    reducers: {
+        toggleLike(state, action: PayloadAction<number>) {
+            const art = state.arts.find((art) => art.id === action.payload);
+            if (art) {
+                art.isLiked = !art.isLiked;
+            }
+        },
+        deleteArt(state, action: PayloadAction<number>) {
+            state.arts = state.arts.filter((art) => art.id !== action.payload);
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(fetchArtsIDs.pending, (state) => {
@@ -112,5 +123,7 @@ const ArtsSlice = createSlice({
             });
     }
 })
+
+export const { toggleLike, deleteArt } = ArtsSlice.actions;
 
 export default ArtsSlice;
