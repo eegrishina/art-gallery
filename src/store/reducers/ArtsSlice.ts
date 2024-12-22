@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-interface Art {
+export interface Art {
     id: number
     title: string;
     artist: string;
@@ -35,7 +35,9 @@ export const fetchArtsIDs = createAsyncThunk<number[], void, { rejectValue: stri
                 throw new Error("Failed to fetch arts IDs");
             }
             const dataIDs = await responseIDs.json();
-            return dataIDs.objectIDs;
+            return dataIDs.objectIDs
+                .sort((a: number, b: number) => a - b)
+                .slice(0, 100);
         } catch (error) {
             if (error instanceof Error) {
                 return rejectWithValue(error.message);
@@ -48,7 +50,7 @@ export const fetchArts = createAsyncThunk<Art[], void, { state: { arts: ArtsStat
     "arts/fetchArts",
     async (_, { getState, rejectWithValue }) => {
         const { ids } = getState().arts;
-        const limitIDs = ids.slice(0, 10);
+        const limitIDs = ids.slice(0, 12);
 
         try {
             const artPromises = limitIDs.map(async (id) => {
