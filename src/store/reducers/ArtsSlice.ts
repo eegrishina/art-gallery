@@ -1,16 +1,18 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Art {
+export interface Art {
     id: number
     title: string;
     artist: string;
     description: string;
     imageUrl: string;
+    isLiked: boolean;
 }
 
 interface ArtsState {
     ids: number[];
     arts: Art[];
+    likedArts: Art[];
     isLoading: boolean;
     error: string | null;
 }
@@ -18,6 +20,7 @@ interface ArtsState {
 const initialState: ArtsState = {
     ids: [],
     arts: [],
+    likedArts: [],
     isLoading: false,
     error: null,
 };
@@ -35,7 +38,9 @@ export const fetchArtsIDs = createAsyncThunk<number[], void, { rejectValue: stri
                 throw new Error("Failed to fetch arts IDs");
             }
             const dataIDs = await responseIDs.json();
-            return dataIDs.objectIDs;
+            return dataIDs.objectIDs
+                .sort((a: number, b: number) => a - b)
+                .slice(0, 100);
         } catch (error) {
             if (error instanceof Error) {
                 return rejectWithValue(error.message);
@@ -48,7 +53,7 @@ export const fetchArts = createAsyncThunk<Art[], void, { state: { arts: ArtsStat
     "arts/fetchArts",
     async (_, { getState, rejectWithValue }) => {
         const { ids } = getState().arts;
-        const limitIDs = ids.slice(0, 10);
+        const limitIDs = ids.slice(0, 12);
 
         try {
             const artPromises = limitIDs.map(async (id) => {
@@ -81,7 +86,22 @@ export const fetchArts = createAsyncThunk<Art[], void, { state: { arts: ArtsStat
 const ArtsSlice = createSlice({
     name: "arts",
     initialState,
-    reducers: {},
+    reducers: {
+        toggleLike(state, action: PayloadAction<number>) {
+            const art = state.arts.find((art) => art.id === action.payload);
+            if (art) {
+                art.isLiked = !art.isLiked;
+            }
+        },
+        toggleShowLikes(state, action: PayloadAction<boolean>) {
+            state.likedArts = action.payload
+                ? state.arts.filter((art) => art.isLiked)
+                : state.arts;
+        },
+        deleteArt(state, action: PayloadAction<number>) {
+            state.arts = state.arts.filter((art) => art.id !== action.payload);
+        }
+    },
     extraReducers: builder => {
         builder
             .addCase(fetchArtsIDs.pending, (state) => {
@@ -110,5 +130,7 @@ const ArtsSlice = createSlice({
             });
     }
 })
+
+export const { toggleLike, deleteArt, toggleShowLikes } = ArtsSlice.actions;
 
 export default ArtsSlice;
