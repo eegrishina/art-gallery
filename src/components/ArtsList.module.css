@@ -42,25 +42,25 @@
     display: inline-block;
     width: 51px;
     height: 28px;
-    outline: 2px solid #ff6b6b;
+    outline: 2px solid var(--coral);
     border-radius: 10px;
-    background-color: #fff;
+    background-color: var(--white);
     cursor: pointer;
 }
 
 .toggle_like input:checked+label {
-    background-color: #ff6b6b;
+    background-color: var(--coral);
 }
 
 .toggle_like svg {
     position: absolute;
     top: 2px;
     left: 2px;
-    fill: #ff6b6b;
+    fill: var(--coral);
     transition: all 0.3s ease-in-out;
 }
 
 .toggle_like input:checked+label svg {
     left: 25px;
-    fill: #fff;
+    fill: var(--white);
 }

@@ -1,5 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
+:root {
+    --white: #ffffff;
+    --bg-body: #efefef;
+    --bg-card: #fdfdfd;
+    --coral-title: #d24848;
+    --coral: #ff6b6b;
+    --coral-hover: #ff8787;
+    --grey: #6c757d;
+    --grey-hover: #8a939b;
+    --grey-text: #4a4a4a;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -8,12 +20,15 @@
 
 body {
     font-family: "Raleway", Arial, sans-serif;
-    background-color: #efefef;
-    color: #0b0b0b;
+    background-color: var(--bg-body);
+    color: var(--grey-text);
     overflow-x: hidden;
     margin: 30px 60px;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: "Lora", serif;
 }
