@@ -24,8 +24,8 @@ export default function ArtsList() {
 
     return (
         <div className={styles.container}>
-            {isLoading && <div>Loading Art Gallery...</div>}
-            {error && <div>Error: {error}</div>}
+            {isLoading && <h2 className={styles.loading}>Loading Art Gallery...</h2>}
+            {error && <h2 className={styles.error}>Error: {error}.</h2>}
 
             {!isLoading && !error && (
                 <div className={styles.content}>

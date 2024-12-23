@@ -2,6 +2,15 @@
     margin: 0 auto;
 }
 
+.loading,
+.error {
+    margin-top: 20px;
+}
+
+.error {
+    color: var(--coral-title);
+}
+
 .list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
