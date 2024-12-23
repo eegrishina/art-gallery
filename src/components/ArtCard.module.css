@@ -114,7 +114,3 @@
 .delete:hover {
     background-color: var(--grey-hover);
 }
-
-.delete:active .container {
-    transform: scale(0.1);
-}

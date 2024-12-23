@@ -1,10 +1,10 @@
+import { useState } from "react";
 import { useAppDispatch } from "../store/store";
 import { toggleLike, deleteArt } from "../store/reducers/ArtsSlice";
 import { Art } from "../store/reducers/ArtsSlice";
 import styles from "./ArtCard.module.css";
 import HeartIcon from "./HeartIcon";
 import TrashIcon from "./TrashIcon";
-import { useState } from "react";
 
 export default function ArtCard({ id, title, artist, description, imageUrl, isLiked }: Art) {
     const [isDeleted, setIsDeleted] = useState(false);
