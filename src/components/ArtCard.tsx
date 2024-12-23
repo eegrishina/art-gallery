@@ -5,11 +5,13 @@ import { Art } from "../store/reducers/ArtsSlice";
 import styles from "./ArtCard.module.css";
 import HeartIcon from "./HeartIcon";
 import TrashIcon from "./TrashIcon";
+import { useNavigate } from "react-router-dom";
 
 export default function ArtCard({ id, title, artist, description, imageUrl, isLiked }: Art) {
     const [isDeleted, setIsDeleted] = useState(false);
-    
+
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const handleLike = (id: number) => {
         dispatch(toggleLike(id));
@@ -23,7 +25,8 @@ export default function ArtCard({ id, title, artist, description, imageUrl, isLi
     }
 
     return (
-        <div className={`${styles.container} ${isDeleted ? styles.deleted : ''}`}>
+        <div className={`${styles.container} ${isDeleted ? styles.deleted : ''}`}
+            onClick={() => navigate(`/products/${id}`)}>
             <div className={styles.content}>
                 <div className={styles.image}>
                     <img src={imageUrl} alt={title} id={styles.img} />
@@ -36,11 +39,17 @@ export default function ArtCard({ id, title, artist, description, imageUrl, isLi
             </div>
 
             <div className={styles.btns}>
-                <button onClick={() => handleLike(id)}
+                <button onClick={(e) => {
+                    e.stopPropagation();
+                    handleLike(id);
+                }}
                     className={isLiked ? styles.liked : styles.like}>
                     <HeartIcon />
                 </button>
-                <button onClick={() => handleDelete(id)}
+                <button onClick={(e) => {
+                    e.stopPropagation();
+                    handleDelete(id);
+                }}
                     className={styles.delete}>
                     <TrashIcon />
                 </button>
