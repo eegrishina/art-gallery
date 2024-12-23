@@ -8,19 +8,21 @@ import HeartIcon from "./HeartIcon";
 
 export default function ArtsList() {
     const dispatch = useAppDispatch();
-    const { ids, arts, likedArts, isLoading, error } = useAppSelector((state) => state.arts);
+    const { ids, arts, likedArts, isLoading, error, isDataFetched } = useAppSelector((state) => state.arts);
 
     const [isLikedOnly, setIsLikedOnly] = useState(false);
 
     useEffect(() => {
-        dispatch(fetchArtsIDs());
-    }, []);
+        if (!isDataFetched) {
+            dispatch(fetchArtsIDs());
+        }
+    }, [isDataFetched]);
 
     useEffect(() => {
-        if (ids.length > 0) {
+        if (ids.length > 0 && !isDataFetched) {
             dispatch(fetchArts());
         }
-    }, [ids]);
+    }, [ids, isDataFetched]);
 
     return (
         <div className={styles.container}>
