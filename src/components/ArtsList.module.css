@@ -7,3 +7,51 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
+
+.filter_likes {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.filter_likes h3 {
+    font-family: "Raleway", Arial, sans-serif;
+}
+
+.toggle_like {
+    display: flex;
+    align-items: center;
+    width: 200px;
+}
+
+.toggle_like input {
+    visibility: hidden;
+}
+
+.toggle_like label {
+    position: relative;
+    display: inline-block;
+    width: 51px;
+    height: 28px;
+    outline: 2px solid #ff6b6b;
+    border-radius: 10px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.toggle_like input:checked+label {
+    background-color: #ff6b6b;
+}
+
+.toggle_like svg {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    fill: #ff6b6b;
+    transition: all 0.3s ease-in-out;
+}
+
+.toggle_like input:checked+label svg {
+    left: 25px;
+    fill: #fff;
+}
