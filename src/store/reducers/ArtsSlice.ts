@@ -15,6 +15,7 @@ interface ArtsState {
     likedArts: Art[];
     isLoading: boolean;
     error: string | null;
+    isDataFetched: boolean;
 }
 
 const initialState: ArtsState = {
@@ -23,6 +24,7 @@ const initialState: ArtsState = {
     likedArts: [],
     isLoading: false,
     error: null,
+    isDataFetched: false,
 };
 
 export const fetchArtsIDs = createAsyncThunk<number[], void, { rejectValue: string }>(
@@ -122,6 +124,7 @@ const ArtsSlice = createSlice({
             })
             .addCase(fetchArts.fulfilled, (state, action) => {
                 state.isLoading = false;
+                state.isDataFetched = true;
                 state.arts = action.payload;
             })
             .addCase(fetchArts.rejected, (state, action) => {
