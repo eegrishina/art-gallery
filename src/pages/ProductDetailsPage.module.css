@@ -1,0 +1,111 @@
+.content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    width: 100%;
+    background-color: var(--bg-card);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.image {
+    flex: 0 0 33%;
+    margin: 0 auto;
+    max-height: 600px;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+#img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 90px;
+}
+
+.info h2 {
+    margin-bottom: 20px;
+    color: var(--coral-title);
+}
+
+.info h3,
+.info small {
+    font-style: italic;
+    color: var(--grey);
+    margin-bottom: 8px;
+}
+
+.info table {
+    table-layout: fixed;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.info table tr {
+    line-height: 1.8rem;
+}
+
+.info table td:first-child {
+    vertical-align: top;
+    width: 120px;
+}
+
+.content button {
+    position: absolute;
+    right: 30px;
+    outline: none;
+    border-radius: 14px;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.content button:active {
+    transform: scale(0.9);
+}
+
+.like {
+    border: 2px solid var(--coral);
+    background-color: inherit;
+}
+
+.like:hover svg {
+    fill: var(--coral);
+}
+
+.liked {
+    border: 2px solid var(--coral);
+    background-color: var(--coral);
+}
+
+.liked:hover {
+    background-color: var(--coral-hover);
+}
+
+@media (max-width: 900px) {
+    .content {
+        flex-direction: column;
+    }
+
+    .info {
+        margin-right: 0px;
+    }
+}
+
+@media (max-width: 500px) {
+    .info table tr {
+        line-height: 1.4rem;
+    }
+
+    .info table td {
+        font-size: 13px;
+    }
+}
