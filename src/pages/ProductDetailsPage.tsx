@@ -15,7 +15,7 @@ export default function ProductDetailsPage() {
         dispatch(toggleLike(id));
     }
 
-    const splitDimensons = artDetails?.dimensions
+    const splitDimensions = artDetails?.dimensions
         .split(";")
         .map((item, idx) => <p key={idx}>{item}</p>);
 
@@ -46,8 +46,8 @@ export default function ProductDetailsPage() {
                                         <td>{artDetails.medium}</td>
                                     </tr>
                                     <tr>
-                                        <td>Dimensons:</td>
-                                        <td>{splitDimensons}</td>
+                                        <td>Dimensions:</td>
+                                        <td>{splitDimensions}</td>
                                     </tr>
                                 </tbody>
                             </table>
