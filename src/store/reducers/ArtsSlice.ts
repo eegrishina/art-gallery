@@ -16,7 +16,6 @@ export interface Art {
 interface ArtsState {
     ids: number[];
     arts: Art[];
-    likedArts: Art[];
     isLoading: boolean;
     error: string | null;
     isDataFetched: boolean;
@@ -25,7 +24,6 @@ interface ArtsState {
 const initialState: ArtsState = {
     ids: [],
     arts: [],
-    likedArts: [],
     isLoading: false,
     error: null,
     isDataFetched: false,
@@ -103,11 +101,6 @@ const ArtsSlice = createSlice({
                 art.isLiked = !art.isLiked;
             }
         },
-        toggleShowLikes(state, action: PayloadAction<boolean>) {
-            state.likedArts = action.payload
-                ? state.arts.filter((art) => art.isLiked)
-                : state.arts;
-        },
         deleteArt(state, action: PayloadAction<number>) {
             state.arts = state.arts.filter((art) => art.id !== action.payload);
         }
@@ -142,6 +135,6 @@ const ArtsSlice = createSlice({
     }
 })
 
-export const { toggleLike, deleteArt, toggleShowLikes } = ArtsSlice.actions;
+export const { toggleLike, deleteArt } = ArtsSlice.actions;
 
 export default ArtsSlice;
