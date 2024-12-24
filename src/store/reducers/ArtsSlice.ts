@@ -3,9 +3,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface Art {
     id: number
     title: string;
+    date: string;
     artist: string;
+    artistBio: string;
     description: string;
     imageUrl: string;
+    medium: string;
+    dimensions: string;
     isLiked: boolean;
 }
 
@@ -69,9 +73,13 @@ export const fetchArts = createAsyncThunk<Art[], void, { state: { arts: ArtsStat
                 return {
                     id: dataArt.objectID,
                     title: dataArt.title,
+                    date: dataArt.objectDate || "year unknown",
                     artist: dataArt.artistDisplayName,
+                    artistBio: dataArt.artistDisplayBio,
                     description: dataArt.creditLine,
-                    imageUrl: dataArt.primaryImage,
+                    medium: dataArt.medium,
+                    dimensions: dataArt.dimensions,
+                    imageUrl: dataArt.primaryImage || "/public/placeholder.png",
                 } as Art;
             });
 
