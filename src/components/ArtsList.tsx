@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { fetchArtsIDs, fetchArts } from "../store/reducers/ArtsSlice";
-import { toggleShowLikes } from "../store/reducers/ArtsSlice";
 import styles from "./ArtsList.module.css";
 import ArtCard from "./ArtCard";
 import HeartIcon from "./HeartIcon";
 
 export default function ArtsList() {
     const dispatch = useAppDispatch();
-    const { ids, arts, likedArts, isLoading, error, isDataFetched } = useAppSelector((state) => state.arts);
+    const { ids, arts, isLoading, error, isDataFetched } = useAppSelector((state) => state.arts);
+
+    const likedArts = useAppSelector((state) =>
+        state.arts.arts.filter((art) => art.isLiked)
+    );
 
     const [isLikedOnly, setIsLikedOnly] = useState(false);
 
@@ -36,11 +39,7 @@ export default function ArtsList() {
                         <div className={styles.toggle_like}>
                             <input type="checkbox" id="like" name="like"
                                 checked={isLikedOnly}
-                                onChange={(e) => {
-                                    const checked = e.target.checked;
-                                    setIsLikedOnly(checked);
-                                    dispatch(toggleShowLikes(checked));
-                                }}
+                                onChange={(e) => setIsLikedOnly(e.target.checked)}
                             />
                             <label htmlFor="like">
                                 <HeartIcon />
