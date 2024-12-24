@@ -103,7 +103,10 @@ const ArtsSlice = createSlice({
         },
         deleteArt(state, action: PayloadAction<number>) {
             state.arts = state.arts.filter((art) => art.id !== action.payload);
-        }
+        },
+        addArt(state, action: PayloadAction<Art>) {
+            state.arts = [action.payload, ...state.arts];
+        },
     },
     extraReducers: builder => {
         builder
@@ -135,6 +138,6 @@ const ArtsSlice = createSlice({
     }
 })
 
-export const { toggleLike, deleteArt } = ArtsSlice.actions;
+export const { toggleLike, deleteArt, addArt } = ArtsSlice.actions;
 
 export default ArtsSlice;
