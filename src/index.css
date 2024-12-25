@@ -23,7 +23,7 @@ body {
     background-color: var(--bg-body);
     color: var(--grey-text);
     overflow-x: hidden;
-    margin: 30px 60px;
+    margin: 50px 220px;
 }
 
 a {
@@ -47,6 +47,12 @@ h2,
 h3,
 h4 {
     font-family: "Lora", serif;
+}
+
+@media (max-width: 1600px) {
+    body {
+        margin: 30px 60px;
+    }
 }
 
 @media (max-width: 600px) {
