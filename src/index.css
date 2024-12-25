@@ -42,6 +42,24 @@ a#return-link::before {
     vertical-align: top;
 }
 
+button,
+input,
+textarea {
+    font-family: "Raleway", Arial, sans-serif;
+    outline: none;
+}
+
+button {
+    border-radius: 14px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
 h1,
 h2,
 h3,

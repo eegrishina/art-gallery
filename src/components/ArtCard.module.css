@@ -78,15 +78,6 @@
 
 .btns button {
     width: 100%;
-    outline: none;
-    border-radius: 14px;
-    padding: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btns button:active {
-    transform: scale(0.9);
 }
 
 .like {
