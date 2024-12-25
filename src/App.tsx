@@ -4,9 +4,11 @@ import ProductDetailsPage from "./pages/ProductDetailsPage";
 import CreateProductPage from "./pages/CreateProductPage";
 import styles from "./App.module.css";
 
+const isGitHubPages = process.env.NODE_ENV === 'production';
+
 export default function App() {
   return (
-    <Router>
+    <Router basename={isGitHubPages ? "/art-gallery" : undefined}>
       <Header />
       <Routes>
         <Route path="/" element={<Navigate to="/products" />} />

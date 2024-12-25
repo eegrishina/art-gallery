@@ -61,15 +61,6 @@
 .content button {
     position: absolute;
     right: 30px;
-    outline: none;
-    border-radius: 14px;
-    padding: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.content button:active {
-    transform: scale(0.9);
 }
 
 .like {

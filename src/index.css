@@ -23,7 +23,7 @@ body {
     background-color: var(--bg-body);
     color: var(--grey-text);
     overflow-x: hidden;
-    margin: 30px 60px;
+    margin: 50px 220px;
 }
 
 a {
@@ -42,11 +42,35 @@ a#return-link::before {
     vertical-align: top;
 }
 
+button,
+input,
+textarea {
+    font-family: "Raleway", Arial, sans-serif;
+    outline: none;
+}
+
+button {
+    border-radius: 14px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
 h1,
 h2,
 h3,
 h4 {
     font-family: "Lora", serif;
+}
+
+@media (max-width: 1600px) {
+    body {
+        margin: 30px 60px;
+    }
 }
 
 @media (max-width: 600px) {

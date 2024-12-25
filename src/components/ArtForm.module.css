@@ -52,10 +52,8 @@
 
 .form input,
 .form textarea {
-    font-family: "Raleway", Arial, sans-serif;
     border: 2px solid var(--grey-hover);
     border-radius: 8px;
-    outline: none;
     padding: 12px;
     font-size: 1rem;
 }
@@ -92,30 +90,20 @@
 
 .form button {
     display: block;
-    font-family: "Raleway", Arial, sans-serif;
     font-size: 1rem;
     color: var(--grey-text);
     width: 170px;
     background-color: inherit;
     border: 2px solid var(--coral);
-    outline: none;
-    border-radius: 14px;
-    padding: 12px;
     margin: 40px 0 0 150px;
     font-weight: 600;
     text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
 }
 
 .form button:hover,
 .form button:focus {
     background-color: var(--coral-hover);
     color: var(--white);
-}
-
-.form button:active {
-    transform: scale(0.9);
 }
 
 @media (max-width: 850px) {
