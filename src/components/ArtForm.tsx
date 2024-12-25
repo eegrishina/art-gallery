@@ -21,7 +21,7 @@ export default function ArtForm() {
             ...data,
             id: Date.now(),
             date: data.date || String(new Date().getFullYear()),
-            imageUrl: data.imageUrl || "/public/placeholder.png",
+            imageUrl: data.imageUrl || "/placeholder.png",
         };
         dispatch(addArt(newArt));
         navigate(`/products/${newArt.id}`);

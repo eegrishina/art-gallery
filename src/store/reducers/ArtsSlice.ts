@@ -80,7 +80,7 @@ export const fetchArts = createAsyncThunk<Art[], void, { state: { arts: ArtsStat
                     description: dataArt.creditLine,
                     medium: dataArt.medium,
                     dimensions: dataArt.dimensions,
-                    imageUrl: dataArt.primaryImage || "/public/placeholder.png",
+                    imageUrl: dataArt.primaryImage || "/placeholder.png",
                 } as Art;
             });
 
