@@ -63,7 +63,10 @@ export default function ArtsList() {
 
     return (
         <div className={styles.container}>
-            {isLoading && <h2 className={styles.loading}>Loading Art Gallery...</h2>}
+            {isLoading && <div>
+                <h2 className={styles.loading}>Loading Art Gallery...</h2>
+                <div className={styles.loading_spinner} />
+            </div>}
             {error && <h2 className={styles.error}>Error: {error}.</h2>}
 
             {!isLoading && !error && (
