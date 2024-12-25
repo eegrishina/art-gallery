@@ -2,11 +2,13 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import styles from "./ArtForm.module.css";
 import { useAppDispatch } from "../store/store";
 import { addArt, Art } from "../store/reducers/ArtsSlice";
+import { useNavigate } from "react-router-dom";
 
 type ArtFormValues = Art & Partial<Pick<Art, "isLiked">>;
 
 export default function ArtForm() {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -22,6 +24,7 @@ export default function ArtForm() {
             imageUrl: data.imageUrl || "/public/placeholder.png",
         };
         dispatch(addArt(newArt));
+        navigate(`/products/${newArt.id}`);
     };
 
     return (
