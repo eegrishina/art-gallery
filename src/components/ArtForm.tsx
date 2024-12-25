@@ -3,6 +3,7 @@ import styles from "./ArtForm.module.css";
 import { useAppDispatch } from "../store/store";
 import { addArt, Art } from "../store/reducers/ArtsSlice";
 import { useNavigate } from "react-router-dom";
+import placeholder from "../assets/placeholder.png";
 
 type ArtFormValues = Art & Partial<Pick<Art, "isLiked">>;
 
@@ -21,7 +22,7 @@ export default function ArtForm() {
             ...data,
             id: Date.now(),
             date: data.date || String(new Date().getFullYear()),
-            imageUrl: data.imageUrl || "/placeholder.png",
+            imageUrl: data.imageUrl || placeholder,
         };
         dispatch(addArt(newArt));
         navigate(`/products/${newArt.id}`);
