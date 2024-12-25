@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../store/store";
 import { fetchArtsIDs, fetchArts } from "../store/reducers/ArtsSlice";
 import styles from "./ArtsList.module.css";
@@ -9,9 +9,9 @@ export default function ArtsList() {
     const dispatch = useAppDispatch();
     const { ids, arts, isLoading, error, isDataFetched } = useAppSelector((state) => state.arts);
 
-    const likedArts = useAppSelector((state) =>
-        state.arts.arts.filter((art) => art.isLiked)
-    );
+    const likedArts = useMemo(() => {
+        return arts.filter((art) => art.isLiked);
+    }, [arts]);
 
     const [isLikedOnly, setIsLikedOnly] = useState(false);
 
