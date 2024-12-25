@@ -19,6 +19,8 @@ interface ArtsState {
     isLoading: boolean;
     error: string | null;
     isDataFetched: boolean;
+    currentPage: number;
+    artsPerPage: number;
 }
 
 const initialState: ArtsState = {
@@ -27,6 +29,8 @@ const initialState: ArtsState = {
     isLoading: false,
     error: null,
     isDataFetched: false,
+    currentPage: 1,
+    artsPerPage: 12,
 };
 
 export const fetchArtsIDs = createAsyncThunk<number[], void, { rejectValue: string }>(
@@ -57,10 +61,9 @@ export const fetchArts = createAsyncThunk<Art[], void, { state: { arts: ArtsStat
     "arts/fetchArts",
     async (_, { getState, rejectWithValue }) => {
         const { ids } = getState().arts;
-        const limitIDs = ids.slice(0, 12);
 
         try {
-            const artPromises = limitIDs.map(async (id) => {
+            const artPromises = ids.map(async (id) => {
                 const responseArt = await fetch(
                     `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
                 );
@@ -107,6 +110,9 @@ const ArtsSlice = createSlice({
         addArt(state, action: PayloadAction<Art>) {
             state.arts = [action.payload, ...state.arts];
         },
+        setPage(state, action: PayloadAction<number>) {
+            state.currentPage = action.payload;
+        },
     },
     extraReducers: builder => {
         builder
@@ -138,6 +144,6 @@ const ArtsSlice = createSlice({
     }
 })
 
-export const { toggleLike, deleteArt, addArt } = ArtsSlice.actions;
+export const { toggleLike, deleteArt, addArt, setPage } = ArtsSlice.actions;
 
 export default ArtsSlice;
