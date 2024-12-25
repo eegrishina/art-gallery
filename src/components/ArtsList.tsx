@@ -98,6 +98,9 @@ export default function ArtsList() {
 
                     <div className={styles.pagination}>
                         <button
+                            style={isLikedOnly && likedArts.length === 0
+                                ? { display: "none" }
+                                : undefined}
                             disabled={isLikedOnly
                                 ? likedCurrentPage === 1
                                 : currentPage === 1}
@@ -129,6 +132,9 @@ export default function ArtsList() {
                         ))}
 
                         <button
+                            style={isLikedOnly && likedArts.length === 0
+                                ? { display: "none" }
+                                : undefined}
                             disabled={isLikedOnly
                                 ? likedCurrentPage * artsPerPage >= likedArts.length
                                 : currentPage * artsPerPage >= arts.length}
