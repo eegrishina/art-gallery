@@ -1,6 +1,6 @@
 # Art Gallery
 
-### [Демонстрация проекта на GitHub Pages](https://kaktusgr.github.io/art-gallery/)
+### [Демонстрация проекта на GitHub Pages](https://eegrishina.github.io/art-gallery/)
 
 ## Описание проекта
 
